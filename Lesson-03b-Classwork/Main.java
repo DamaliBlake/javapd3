@@ -8,7 +8,7 @@ class Main {
 
   void init(){
    System.out.println("\"Damali Blake\"");
-   System.out.println("\Damali Blake \453 Glengrove Ave");
+   System.out.println("\Damali Blake \n453 Glengrove Ave");
   }
 
   
