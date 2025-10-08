@@ -7,8 +7,8 @@ class Main {
   // program begins.  
 
   void init(){
-   System.out.println("\"Damali Blake\"");
-   System.out.println("\Damali Blake \n453 Glengrove Ave");
+   
+    
   }
 
   
