@@ -42,12 +42,16 @@ else{
         Otherwise: $0 savings.
     */
 int groceryDiscount(int spent,int purchased){
-  if (spent >= 100 && <= 200);
-  if (purchased == 3);
+  if (spent >= 100 && <= 200){
+  if (purchased == 3){
   return "$10 saving";
-  if (spent >= 200);
-  if (purchased > 4);
+  }
+  }
+  if (spent >= 200){
+  if (purchased > 4){
   return "$25 saving";
+  }
+  }
 else{
   return "$0 saving";
 }
