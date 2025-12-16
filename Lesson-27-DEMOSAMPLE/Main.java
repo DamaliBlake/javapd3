@@ -1,93 +1,122 @@
 class Main {
+
   public static void main(String[] args) {
-    (new Main()).init();
+    new Main().init();
   }
-  void print(Object o){ System.out.println(o);}
-  void printt(Object o){ System.out.print(o);}
 
-  void init(){
+  void init() {
 
-    // This example we are substituting all lower case 
-    // letters to another lower case letter.
-    char[] sub = new char[5];
-    sub[0] = 'a';
-    sub[1] = 'e';
-    sub[2] = 'i';
-    sub[3] = 'o';
-    sub[4] = 'u';
+    String message = "attack! Take no prisoners.";
 
-    char[] sub2 = new char[5];
-    sub2[0] = '\u2663';  // Club
-    sub2[1] = '\u2660';  // Spade
-    sub2[2] = '\u2665';  // Heart
-    sub2[3] = '\u2666';  // Diamond
-    sub2[4] = '\u2836';  // Bralle symbol
+    // ENCODING
+    String step1 = reverse(message);
+    String step2 = encode(step1);
+    String step3 = vowelToNumber(step2);
+    String step4 = addAy(step3);
+    String step5 = wingdingsEncode(step4);
 
-    
-    // Encoding message
-    String file = Input.readFile("test.txt");
+    System.out.println("Encoded Message:");
+    System.out.println(step5);
 
-    //substituion
-    String encodedMsg1 = subEncryption(file,sub,sub2);
-    //Input.writeFile("Encode1.txt",encodedMsg1);
+    // DECODING (reverse order)
+    String d1 = wingdingsDecode(step5);
+    String d2 = removeAy(d1);
+    String d3 = numberToVowel(d2);
+    String d4 = decode(d3);
+    String d5 = reverse(d4);
 
-    // caesar cipher
-    String encodedMsg2 = encode(encodedMsg1);
-    //Input.writeFile("Encode2.txt",encodedMsg2);
-
-    // reverse
-    String encodedMsg3 = reverse(encodedMsg2);
-    Input.writeFile("Encode3.txt",encodedMsg3);
-
-    
-    // decoding message
-    String file2 = Input.readFile("Encode1.txt");
-    
-    String decodedMsg1 = reverse(file2);
-    //Input.writeFile("Decode1.txt", decodedMsg1);
-    
-    String decodedMsg2 = decode(decodedMsg1);
-    //Input.writeFile("Decode2.txt", decodedMsg2);
-    
-     String decodedMsg3 = subEncryption(decodedMsg2, sub2, sub);
-    //Input.writeFile("Decode1.txt", decodedMsg3);
-    
-    
+    System.out.println("\nDecoded Message:");
+    System.out.println(d5);
   }
-  // Level 1 reverse string
-  String reverse(String txt){
-    String bld ="";
-    
-    return bld;
-  }
-  
-  
-  //Level 2 Cipher encoding with no wrapping
-  String encode(String txt){
-    String bld="";
-    
-     
+
+  // 1. Reverse
+  String reverse(String txt) {
+    String bld = "";
+    for (int i = txt.length() - 1; i >= 0; i--) {
+      bld += txt.charAt(i);
+    }
     return bld;
   }
 
-  
-  String decode(String txt){
-    String bld="";
-   
+  // 2. Caesar cipher (+2)
+  String encode(String txt) {
+    String bld = "";
+    for (int i = 0; i < txt.length(); i++) {
+      char c = txt.charAt(i);
+      if (Character.isLetter(c)) {
+        bld += (char)(c + 2);
+      } else {
+        bld += c;
+      }
+    }
     return bld;
   }
 
-  // Level 3 Substituion encoding
-  String subEncryption(String s, char[] sub, char[] sub2){
-    String bld="";
-   
+  String decode(String txt) {
+    String bld = "";
+    for (int i = 0; i < txt.length(); i++) {
+      char c = txt.charAt(i);
+      if (Character.isLetter(c)) {
+        bld += (char)(c - 2);
+      } else {
+        bld += c;
+      }
+    }
     return bld;
   }
-  
-  
-  int randInt(int lower, int upper){
-    int range = upper - lower;
-    return (int)(Math.random()*range+lower);
+
+  // 3. Vowels → Numbers
+  String vowelToNumber(String txt) {
+    return txt.replace('a','1')
+              .replace('e','2')
+              .replace('i','3')
+              .replace('o','4')
+              .replace('u','5');
   }
 
+  String numberToVowel(String txt) {
+    return txt.replace('1','a')
+              .replace('2','e')
+              .replace('3','i')
+              .replace('4','o')
+              .replace('5','u');
+  }
+
+  // 4. Add "ay"
+  String addAy(String txt) {
+    String[] words = txt.split(" ");
+    String bld = "";
+    for (String w : words) {
+      bld += w + "ay ";
+    }
+    return bld.trim();
+  }
+
+  String removeAy(String txt) {
+    String[] words = txt.split(" ");
+    String bld = "";
+    for (String w : words) {
+      bld += w.substring(0, w.length() - 2) + " ";
+    }
+    return bld.trim();
+  }
+
+  // 5. Wingdings (simulated symbol encoding)
+  String wingdingsEncode(String txt) {
+    String bld = "";
+    for (int i = 0; i < txt.length(); i++) {
+      char c = txt.charAt(i);
+      bld += (char)(c + 100);
+    }
+    return bld;
+  }
+
+  String wingdingsDecode(String txt) {
+    String bld = "";
+    for (int i = 0; i < txt.length(); i++) {
+      char c = txt.charAt(i);
+      bld += (char)(c - 100);
+    }
+    return bld;
+  }
 }
