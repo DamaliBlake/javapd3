@@ -32,7 +32,7 @@ class Main {
     Input.writeFile("Decoded.txt", d6);
   }
 
-  // 1. Swap adjacent letters
+  // 1. Swap letters
   String swapLetters(String txt) {
     char[] arr = txt.toCharArray();
     for (int i = 0; i < arr.length - 1; i += 2) {
@@ -104,7 +104,7 @@ class Main {
     return bld.trim();
   }
 
-  // 5. Wingdings (simulated symbol mapping)
+  // 5. Wingdings 
   String wingdingsEncrypt(String txt) {
     return txt.replace("a","@").replace("b","#")
               .replace("c","$").replace("d","%")
