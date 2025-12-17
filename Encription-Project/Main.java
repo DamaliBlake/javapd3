@@ -3,19 +3,29 @@ class Main {
   public static void main(String[] args) {
     new Main().init();
   }
+  void print(Object a){
+    System.out.println(a);
+  }
 
   void init() {
 
     // Read original text
-    String file = Input.readFile("Original.txt");
+    String file = Input.readFile("test.txt");
 
     // ENCRYPTION
     String e1 = swapLetters(file);
+    print(e1);
     String e2 = encode(e1);
+    print(e2);
     String e3 = vowelEncrypt(e2);
+    print(e3);
     String e4 = addAy(e3);
+    print(e4);
     String e5 = wingdingsEncrypt(e4);
+    print(e5);
     String e6 = reverse(e5);
+    print(e6);
+    print("_____________________________________");
 
     Input.writeFile("Encoded.txt", e6);
 
@@ -23,11 +33,18 @@ class Main {
     String file2 = Input.readFile("Encoded.txt");
 
     String d1 = reverse(file2);
+    print(d1);
+
     String d2 = wingdingsDecrypt(d1);
+    print(d2);
     String d3 = removeAy(d2);
+    print(d3);
     String d4 = vowelDecrypt(d3);
+    print(d4);
     String d5 = decode(d4);
+    print(d5);
     String d6 = swapLetters(d5);
+    print(d6);
 
     Input.writeFile("Decoded.txt", d6);
   }
