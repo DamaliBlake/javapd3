@@ -49,7 +49,8 @@ class Main {
     for (char c : txt.toCharArray()) {
       if (Character.isLetter(c)) {
         bld += (char)(c + 2);
-      } else {
+      } 
+      else {
         bld += c;
       }
     }
@@ -61,7 +62,8 @@ class Main {
     for (char c : txt.toCharArray()) {
       if (Character.isLetter(c)) {
         bld += (char)(c - 2);
-      } else {
+      } 
+      else {
         bld += c;
       }
     }
